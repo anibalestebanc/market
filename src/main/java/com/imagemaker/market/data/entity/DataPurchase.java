@@ -6,15 +6,15 @@ import java.util.List;
 
 @Entity
 @Table(name = "compras")
-public class Purchase {
+public class DataPurchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_compra")
-    private Integer ruchaseId;
+    private Integer purchaseId;
 
     @Column(name = "id_cliente")
-    private String cutomerId;
+    private String customerId;
 
     @Column(name = "fecha")
     private LocalDateTime date;
@@ -30,25 +30,42 @@ public class Purchase {
 
     @ManyToOne
     @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
-    private Customer customer;
+    private DataCustomer customer;
 
-    @OneToMany(mappedBy = "product")
-    private List<PurchaseProduct> products;
+    @OneToMany(mappedBy = "purchase", cascade = {CascadeType.ALL})
+    private List<DataPurchasesProduct> products;
 
-    public Integer getRuchaseId() {
-        return ruchaseId;
+
+    public Integer getPurchaseId() {
+        return purchaseId;
     }
 
-    public void setRuchaseId(Integer ruchaseId) {
-        this.ruchaseId = ruchaseId;
+    public void setPurchaseId(Integer purchaseId) {
+        this.purchaseId = purchaseId;
     }
 
-    public String getCutomerId() {
-        return cutomerId;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCutomerId(String cutomerId) {
-        this.cutomerId = cutomerId;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public DataCustomer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(DataCustomer customer) {
+        this.customer = customer;
+    }
+
+    public List<DataPurchasesProduct> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<DataPurchasesProduct> products) {
+        this.products = products;
     }
 
     public LocalDateTime getDate() {

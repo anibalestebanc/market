@@ -4,18 +4,18 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "productos")
-public class Product {
+public class DataProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_producto")
-    private Integer roductId;
+    private Integer productId;
 
     @Column(name = "nombre")
     private String name;
 
     @Column(name = "id_categoria")
-    private Integer ategoryId;
+    private Integer categoryId;
 
     @Column(name = "codigo_barras")
     private String barcode;
@@ -31,22 +31,30 @@ public class Product {
 
     @ManyToOne
     @JoinColumn( name = "id_categoria", insertable = false, updatable = false)
-    private Category category;
+    private DataCategory category;
 
-    public Integer getRoductId() {
-        return roductId;
+    public DataCategory getCategory() {
+        return category;
     }
 
-    public void setRoductId(Integer roductId) {
-        this.roductId = roductId;
+    public void setCategory(DataCategory category) {
+        this.category = category;
     }
 
-    public Integer getAtegoryId() {
-        return ategoryId;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setAtegoryId(Integer ategoryId) {
-        this.ategoryId = ategoryId;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getName() {
@@ -56,7 +64,6 @@ public class Product {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public String getBarcode() {
         return barcode;

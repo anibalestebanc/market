@@ -1,17 +1,15 @@
 package com.imagemaker.market.data.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "clientes")
-public class Customer {
+public class DataCustomer {
 
+    @Id
     @Column(name = "id")
-    private Integer customerId;
+    private String customerId;
 
     @Column(name = "nombre")
     private String name;
@@ -20,7 +18,7 @@ public class Customer {
     private String lastName;
 
     @Column(name = "celular")
-    private Integer phone;
+    private Long phone;
 
     @Column(name = "direccion")
     private String address;
@@ -29,14 +27,22 @@ public class Customer {
     private String email;
 
     @OneToMany(mappedBy = "customer")
-    private List<Purchase> purchases;
+    private List<DataPurchase> purchases;
 
-    public Integer getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Integer customerId) {
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
+    }
+
+    public List<DataPurchase> getPurchases() {
+        return purchases;
+    }
+
+    public void setPurchases(List<DataPurchase> purchases) {
+        this.purchases = purchases;
     }
 
     public String getName() {
@@ -55,11 +61,11 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public Integer getPhone() {
+    public Long getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(Long phone) {
         this.phone = phone;
     }
 

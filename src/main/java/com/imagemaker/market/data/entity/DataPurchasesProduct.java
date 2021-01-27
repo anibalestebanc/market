@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "compras_productos")
-public class PurchaseProduct {
+public class DataPurchasesProduct {
 
     @EmbeddedId
     private PurchaseProductPK id;
@@ -20,12 +20,21 @@ public class PurchaseProduct {
     private Boolean state;
 
     @ManyToOne
+    @MapsId("purchaseId")
     @JoinColumn(name = "id_compra", insertable = false, updatable = false)
-    private Purchase purchase;
+    private DataPurchase purchase;
 
     @ManyToOne
     @JoinColumn(name = "id_producto", insertable = false, updatable = false)
-    private Product product;
+    private DataProduct product;
+
+    public DataPurchase getPurchase() {
+        return purchase;
+    }
+
+    public void setPurchase(DataPurchase purchase) {
+        this.purchase = purchase;
+    }
 
     public PurchaseProductPK getId() {
         return id;
