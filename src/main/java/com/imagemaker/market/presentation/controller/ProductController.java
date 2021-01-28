@@ -19,7 +19,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping()
+    @GetMapping("/list")
     @ApiOperation("Get all products")
     @ApiResponse(code = 200, message = "success")
     public ResponseEntity<List<Product>> getProductList() {
@@ -45,7 +45,7 @@ public class ProductController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping()
+    @PostMapping("/create")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         return new ResponseEntity<>(productService.save(product), HttpStatus.CREATED);
     }

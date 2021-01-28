@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/purchase")
@@ -17,7 +16,7 @@ public class PurchaseController {
     @Autowired
     private PurchaseService purchaseService;
 
-    @GetMapping()
+    @GetMapping("/list")
     public ResponseEntity<List<Purchase>> getPurchaseList(){
         return new ResponseEntity<>(purchaseService.getPurchaseList(), HttpStatus.OK);
     }
@@ -29,9 +28,8 @@ public class PurchaseController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping()
+    @PostMapping("/create")
     public ResponseEntity<Purchase> createPurchase(@RequestBody Purchase purchase){
         return new ResponseEntity<>(purchaseService.create(purchase), HttpStatus.OK);
     }
-
 }
