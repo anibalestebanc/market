@@ -16,7 +16,7 @@ public class PurchaseController {
     @Autowired
     private PurchaseService purchaseService;
 
-    @GetMapping("/list")
+    @GetMapping
     public ResponseEntity<List<Purchase>> getPurchaseList(){
         return new ResponseEntity<>(purchaseService.getPurchaseList(), HttpStatus.OK);
     }
@@ -28,7 +28,7 @@ public class PurchaseController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<Purchase> createPurchase(@RequestBody Purchase purchase){
         return new ResponseEntity<>(purchaseService.create(purchase), HttpStatus.OK);
     }
